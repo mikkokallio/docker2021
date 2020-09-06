@@ -138,6 +138,7 @@ docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 ```
 
 # Exercise 1.12
+For the Dockerfiles, see folders /exercise-1-10 and /exercise-1-11. The Dockerfiles have been updated as per the requirements of 1.12.
 ```
 docker run -d -p 5000:5000 webapp
 docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
