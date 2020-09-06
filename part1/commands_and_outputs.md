@@ -104,6 +104,16 @@ Searching..
 
 Exercise 1.8
 ```
+docker@boot2docker:~/docker2020/part1/first$ touch logs.txt
+docker@boot2docker:~/docker2020/part1/first$ docker run -v $(pwd)/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+^CClosing file
+docker@boot2docker:~/docker2020/part1/first$ tail ./logs.txt
+Sun, 06 Sep 2020 09:31:29 GMT
+Sun, 06 Sep 2020 09:31:32 GMT
+Sun, 06 Sep 2020 09:31:35 GMT
 ```
 
 Exercise 1.9
