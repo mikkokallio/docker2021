@@ -9,6 +9,11 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 Exercise 1.2
 ```
+docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ```
 
 Exercise 1.3
