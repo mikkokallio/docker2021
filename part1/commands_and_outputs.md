@@ -90,6 +90,16 @@ docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
 
 Exercise 1.7
 ```
+docker@boot2docker:~/docker2020/part1/curler$ docker build -t curler .
+Sending build context to Docker daemon  4.096kB
+...
+Successfully tagged curler:latest
+docker@boot2docker:~/docker2020/part1/curler$ docker run -it curler
+Input website:
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+...
 ```
 
 Exercise 1.8
