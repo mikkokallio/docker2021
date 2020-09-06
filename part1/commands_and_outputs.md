@@ -39,6 +39,36 @@ root@b6690cad9776:/usr/app# tail -f ./logs.txt
 
 Exercise 1.5
 ```
+docker@boot2docker:~$ docker run -it -d --name website ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+b1b2f3b3a3659b15e5a4a6a3bea695381292d60d71ef7a4aab8ca4563dc2ec1f
+docker@boot2docker:~$ docker exec -it website bash
+root@b1b2f3b3a365:/# apt-get update
+Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [109 kB]
+...
+Get:18 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [9084 B]
+Fetched 16.6 MB in 16s (1033 kB/s)
+Reading package lists... Done
+root@b1b2f3b3a365:/# apt-get install curl
+Reading package lists... Done
+...
+After this operation, 19.0 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libffi6 amd64 3.2.1-4 [17.8 kB]
+...
+done.
+root@b1b2f3b3a365:/# exit
+exit
+docker@boot2docker:~$ docker attach website
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
+docker@boot2docker:~$
 ```
 
 Exercise 1.6
