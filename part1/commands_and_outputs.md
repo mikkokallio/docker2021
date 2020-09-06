@@ -30,6 +30,11 @@ You found the correct password. Secret message is:
 
 Exercise 1.4
 ```
+docker@boot2docker:~$ docker run -d devopsdockeruh/exec_bash_exercise
+b6690cad977681736de9ce91477b36b353039a95c0bc5dcd48877e8d31ab02f6
+docker@boot2docker:~$ docker exec -it b66 bash
+root@b6690cad9776:/usr/app# tail -f ./logs.txt
+"Docker is easy"
 ```
 
 Exercise 1.5
