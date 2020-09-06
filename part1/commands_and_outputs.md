@@ -129,7 +129,7 @@ Ports configured correctly!!
 ```
 
 # Exercise 1.10
-For the Dockerfile, see folder /exercise-1-11.
+For the Dockerfile, see folder /exercise-1-10.
 
 # Exercise 1.11
 For the Dockerfile, see folder /exercise-1-11.
