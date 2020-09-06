@@ -129,11 +129,12 @@ Ports configured correctly!!
 ```
 
 # Exercise 1.10
-```
-```
+For the Dockerfile, see folder /exercise-1-11.
 
 # Exercise 1.11
+For the Dockerfile, see folder /exercise-1-11.
 ```
+docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 ```
 
 # Exercise 1.12
