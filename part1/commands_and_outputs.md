@@ -118,6 +118,14 @@ Sun, 06 Sep 2020 09:31:35 GMT
 
 Exercise 1.9
 ```
+docker@boot2docker:~/docker2020/part1$ docker run -p 3001:80 -d devopsdockeruh/ports_exercise
+a3c7b4cff99979297a33f8602528dab19ee9e7fadf2ac9198b7c601ce6447274
+docker@boot2docker:~/docker2020/part1$ docker port a3c
+80/tcp -> 0.0.0.0:3001
+```
+Because I'm running Docker Toolbox on Windows 10 Home, the address to navigate to is: http://192.168.99.100:3001/
+```
+Ports configured correctly!!
 ```
 
 Exercise 1.10
