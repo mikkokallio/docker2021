@@ -1,4 +1,4 @@
-Exercise 1.1
+# Exercise 1.1
 ```
 docker container ls -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
@@ -7,7 +7,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 22575bed77fa        nginx               "/docker-entrypoint.…"   51 seconds ago      Up 50 seconds               80/tcp              stoic_goldberg
 ```
 
-Exercise 1.2
+# Exercise 1.2
 ```
 docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -16,7 +16,7 @@ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ```
 
-Exercise 1.3
+# Exercise 1.3
 ```
 docker@boot2docker:~$ docker run -it devopsdockeruh/pull_exercise
 Unable to find image 'devopsdockeruh/pull_exercise:latest' locally
@@ -28,7 +28,7 @@ You found the correct password. Secret message is:
 "This is the secret message"
 ```
 
-Exercise 1.4
+# Exercise 1.4
 ```
 docker@boot2docker:~$ docker run -d devopsdockeruh/exec_bash_exercise
 b6690cad977681736de9ce91477b36b353039a95c0bc5dcd48877e8d31ab02f6
@@ -37,7 +37,7 @@ root@b6690cad9776:/usr/app# tail -f ./logs.txt
 "Docker is easy"
 ```
 
-Exercise 1.5
+# Exercise 1.5
 ```
 docker@boot2docker:~$ docker run -it -d --name website ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
 b1b2f3b3a3659b15e5a4a6a3bea695381292d60d71ef7a4aab8ca4563dc2ec1f
@@ -71,7 +71,7 @@ Searching..
 docker@boot2docker:~$
 ```
 
-Exercise 1.6
+# Exercise 1.6
 ```
 docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
 Sending build context to Docker daemon  2.048kB
@@ -88,7 +88,7 @@ docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
 2
 ```
 
-Exercise 1.7
+# Exercise 1.7
 ```
 docker@boot2docker:~/docker2020/part1/curler$ docker build -t curler .
 Sending build context to Docker daemon  4.096kB
@@ -102,7 +102,7 @@ Searching..
 ...
 ```
 
-Exercise 1.8
+# Exercise 1.8
 ```
 docker@boot2docker:~/docker2020/part1/first$ touch logs.txt
 docker@boot2docker:~/docker2020/part1/first$ docker run -v $(pwd)/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
@@ -116,7 +116,7 @@ Sun, 06 Sep 2020 09:31:32 GMT
 Sun, 06 Sep 2020 09:31:35 GMT
 ```
 
-Exercise 1.9
+# Exercise 1.9
 ```
 docker@boot2docker:~/docker2020/part1$ docker run -p 3001:80 -d devopsdockeruh/ports_exercise
 a3c7b4cff99979297a33f8602528dab19ee9e7fadf2ac9198b7c601ce6447274
@@ -128,26 +128,26 @@ Because I'm running Docker Toolbox on Windows 10 Home, the address to navigate t
 Ports configured correctly!!
 ```
 
-Exercise 1.10
+# Exercise 1.10
 ```
 ```
 
-Exercise 1.11
+# Exercise 1.11
 ```
 ```
 
-Exercise 1.12
+# Exercise 1.12
 ```
 ```
 
-Exercise 1.13
+# Exercise 1.13
 ```
 ```
 
-Exercise 1.14
+# Exercise 1.14
 ```
 ```
 
-Exercise 1.15
+# Exercise 1.15
 ```
 ```
