@@ -1,8 +1,8 @@
 FROM node:current-slim
 WORKDIR /usr/src/app
-ENV API_URL=http://192.168.99.100:8000/
+ENV FRONT_URL=http://192.168.99.100:5000
 COPY package.json .
-RUN npm i
-EXPOSE 5000
+RUN npm install
+EXPOSE 8000
 CMD [ "npm", "start" ]
 COPY . .
