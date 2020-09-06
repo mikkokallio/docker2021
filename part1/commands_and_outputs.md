@@ -139,6 +139,8 @@ docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 
 # Exercise 1.12
 ```
+docker run -d -p 5000:5000 webapp
+docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 ```
 
 # Exercise 1.13
