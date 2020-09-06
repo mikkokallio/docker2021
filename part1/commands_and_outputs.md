@@ -73,6 +73,19 @@ docker@boot2docker:~$
 
 Exercise 1.6
 ```
+docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
+ ---> 3d2b622b1849
+Step 2/2 : CMD ["-c"]
+ ---> Running in 7cba9ffe8fd3
+Removing intermediate container 7cba9ffe8fd3
+ ---> a121f1f011bb
+Successfully built a121f1f011bb
+Successfully tagged docker-clock:latest
+docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
+1
+2
 ```
 
 Exercise 1.7
@@ -80,5 +93,33 @@ Exercise 1.7
 ```
 
 Exercise 1.8
+```
+```
+
+Exercise 1.9
+```
+```
+
+Exercise 1.10
+```
+```
+
+Exercise 1.11
+```
+```
+
+Exercise 1.12
+```
+```
+
+Exercise 1.13
+```
+```
+
+Exercise 1.14
+```
+```
+
+Exercise 1.15
 ```
 ```
