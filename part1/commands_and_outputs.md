@@ -145,7 +145,11 @@ docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 ```
 
 # Exercise 1.13
+Switched from Win 10 to Ubuntu at this point. Dockerfile in /exercise-1-13.
 ```
+sudo docker build -t java .
+sudo docker run -p 8080:8080 java
+
 ```
 
 # Exercise 1.14
