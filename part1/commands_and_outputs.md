@@ -153,7 +153,33 @@ sudo docker run -p 8080:8080 java
 ```
 
 # Exercise 1.14
+Dockerfile:
+´´´
+FROM ruby:2.6.0
+RUN apt-get update -qq && apt-get install -y nodejs nano
+
+RUN mkdir /myapp
+WORKDIR /myapp
+
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+COPY . /myapp
+
+ENV SECRET_KEY_BASE `bin/rake secret`
+
+RUN rails db:migrate RAILS_ENV=production
+RUN rake assets:precompile
+
+EXPOSE 3000
+
+CMD ["rails", "s", "-e", "production"]
+´´´
+
+Commands:
 ```
+sudo docker build -t rails .
+sudo docker run -p 3000:3000 rails
 ```
 
 # Exercise 1.15
