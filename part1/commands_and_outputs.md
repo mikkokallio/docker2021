@@ -154,7 +154,7 @@ sudo docker run -p 8080:8080 java
 
 # Exercise 1.14
 Dockerfile:
-´´´
+```
 FROM ruby:2.6.0
 RUN apt-get update -qq && apt-get install -y nodejs nano
 
@@ -174,7 +174,7 @@ RUN rake assets:precompile
 EXPOSE 3000
 
 CMD ["rails", "s", "-e", "production"]
-´´´
+```
 
 Commands:
 ```
