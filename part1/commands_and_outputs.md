@@ -28,29 +28,6 @@ root@9ae1eb721f9d:/usr/src/app# tail -f ./text.log
 Secret message is: 'You can find the source code here: https://github.com/docker-hy'
 ```
 
-
-# Exercise 1.6 Hello Docker Hub
-```
-azureuser@docker-test:~$ docker run -it devopsdockeruh/pull_exercise
-Unable to find image 'devopsdockeruh/pull_exercise:latest' locally
-latest: Pulling from devopsdockeruh/pull_exercise
-8e402f1a9c57: Pull complete
-5e2195587d10: Pull complete
-6f595b2fc66d: Pull complete
-165f32bf4e94: Pull complete
-67c4f504c224: Pull complete
-Digest: sha256:7c0635934049afb9ca0481fb6a58b16100f990a0d62c8665b9cfb5c9ada8a99f
-Status: Downloaded newer image for devopsdockeruh/pull_exercise:latest
-Give me the password: basics
-You found the correct password. Secret message is:
-"This is the secret message"
-```
-
-
-
-
-
-
 # Exercise 1.4 Missing dependencies
 ```
 azureuser@docker-test:~$ sudo docker run -it -d --name website ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
@@ -69,7 +46,7 @@ Running hooks in /etc/ca-certificates/update.d...
 done.
 root@74d7773f4b82:/# exit
 exit
-azureuser@docker-test:~$ sudo docker attach website
+azureuser@docker-test:~$ docker attach website
 helsinki.fi
 Searching..
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
@@ -81,35 +58,70 @@ Searching..
 </body></html>
 ```
 
-# Exercise 1.5
-
-
-# Exercise 1.6
+# Exercise 1.5 Sizes of images
+Size comparison:
 ```
-docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
-Sending build context to Docker daemon  2.048kB
-Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
- ---> 3d2b622b1849
-Step 2/2 : CMD ["-c"]
- ---> Running in 7cba9ffe8fd3
-Removing intermediate container 7cba9ffe8fd3
- ---> a121f1f011bb
-Successfully built a121f1f011bb
-Successfully tagged docker-clock:latest
-docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
-1
-2
+azureuser@docker-test:~$ docker images
+REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
+devopsdockeruh/simple-web-service   ubuntu              4e3362e907d5        3 months ago        83MB
+devopsdockeruh/simple-web-service   alpine              fd312adc88e0        3 months ago        15.7MB
 ```
 
-# Exercise 1.x
+Curling works pretty much the same as from the Ubuntu image:
 ```
-docker@boot2docker:~$ docker run -d devopsdockeruh/exec_bash_exercise
-b6690cad977681736de9ce91477b36b353039a95c0bc5dcd48877e8d31ab02f6
-docker@boot2docker:~$ docker exec -it b66 bash
-root@b6690cad9776:/usr/app# tail -f ./logs.txt
-"Docker is easy"
+`azureuser@docker-test:~$ docker run -it -d --name website2 alpine sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+f01a172b37331ef202ee365890eaaa6da0af0aea5a3159b57aedbce1b32480a9
+azureuser@docker-test:~$ docker exec -it website2 sh
+/ # apk add curl
+...
+OK: 8 MiB in 19 packages
+/ # exit
+azureuser@docker-test:~$ docker attach website2
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
+</body></html>
+azureuser@docker-test:~$
 ```
 
+# Exercise 1.6 Hello Docker Hub
+```
+azureuser@docker-test:~$ docker run -it devopsdockeruh/pull_exercise
+Unable to find image 'devopsdockeruh/pull_exercise:latest' locally
+latest: Pulling from devopsdockeruh/pull_exercise
+8e402f1a9c57: Pull complete
+5e2195587d10: Pull complete
+6f595b2fc66d: Pull complete
+165f32bf4e94: Pull complete
+67c4f504c224: Pull complete
+Digest: sha256:7c0635934049afb9ca0481fb6a58b16100f990a0d62c8665b9cfb5c9ada8a99f
+Status: Downloaded newer image for devopsdockeruh/pull_exercise:latest
+Give me the password: basics
+You found the correct password. Secret message is:
+"This is the secret message"
+```
+
+# Exercise 1.7 Two line Dockerfile
+Commands to build and run the image:
+```
+azureuser@docker-test:~/twoline$ docker build .
+...
+Successfully built 794f9585ff41
+azureuser@docker-test:~/twoline$ docker run 794
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:   export GIN_MODE=release
+ - using code:  gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /*path                    --> server.Start.func1 (3 handlers)
+[GIN-debug] Listening and serving HTTP on :8080
+```
 
 # Exercise 1.8 Image for script
 ```
@@ -134,6 +146,24 @@ RUN apt-get update && apt-get install -y curl
 RUN chmod +x ./script.sh
 ENTRYPOINT ./script.sh
 ```
+
+# Exercise 1.x
+```
+docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
+ ---> 3d2b622b1849
+Step 2/2 : CMD ["-c"]
+ ---> Running in 7cba9ffe8fd3
+Removing intermediate container 7cba9ffe8fd3
+ ---> a121f1f011bb
+Successfully built a121f1f011bb
+Successfully tagged docker-clock:latest
+docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
+1
+2
+```
+
 
 # Exercise 1.8
 ```
