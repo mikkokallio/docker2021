@@ -159,48 +159,31 @@ RUN chmod +x ./script.sh
 ENTRYPOINT ./script.sh
 ```
 
-# Exercise 1.x
+# Exercise 1.9 Volumes
 ```
-docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
-Sending build context to Docker daemon  2.048kB
-Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
- ---> 3d2b622b1849
-Step 2/2 : CMD ["-c"]
- ---> Running in 7cba9ffe8fd3
-Removing intermediate container 7cba9ffe8fd3
- ---> a121f1f011bb
-Successfully built a121f1f011bb
-Successfully tagged docker-clock:latest
-docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
-1
-2
+azureuser@docker-test:~/mount$ touch text.log
+azureuser@docker-test:~/mount$ docker run -v $(pwd)/text.log:/usr/src/app/text.log devopsdockeruh/simple-web-service
+Starting log output
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+Wrote text to /usr/src/app/text.log
+^Cazureuser@docker-test:~/mount$ cat text.log
+2021-06-13 19:14:56 +0000 UTC
+2021-06-13 19:14:58 +0000 UTC
+2021-06-13 19:15:00 +0000 UTC
 ```
 
-
-# Exercise 1.8
+# Exercise 1.10 Ports open
 ```
-docker@boot2docker:~/docker2020/part1/first$ touch logs.txt
-docker@boot2docker:~/docker2020/part1/first$ docker run -v $(pwd)/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
-Wrote to file /usr/app/logs.txt
-Wrote to file /usr/app/logs.txt
-Wrote to file /usr/app/logs.txt
-^CClosing file
-docker@boot2docker:~/docker2020/part1/first$ tail ./logs.txt
-Sun, 06 Sep 2020 09:31:29 GMT
-Sun, 06 Sep 2020 09:31:32 GMT
-Sun, 06 Sep 2020 09:31:35 GMT
+azureuser@docker-test:~$ docker run -p 3000:8080 -d web-server
+f2000352d97cba6a052e2165ff89dbc0695e6c3946ddb59a1d1406dde58ca3d3
+azureuser@docker-test:~$ docker port f20
+8080/tcp -> 0.0.0.0:3000
 ```
-
-# Exercise 1.9
+Connecting to http://137.135.212.14:3000/ (Azure VM) in browser:
 ```
-docker@boot2docker:~/docker2020/part1$ docker run -p 3001:80 -d devopsdockeruh/ports_exercise
-a3c7b4cff99979297a33f8602528dab19ee9e7fadf2ac9198b7c601ce6447274
-docker@boot2docker:~/docker2020/part1$ docker port a3c
-80/tcp -> 0.0.0.0:3001
-```
-Because I'm running Docker Toolbox on Windows 10 Home, the address to navigate to is: http://192.168.99.100:3001/
-```
-Ports configured correctly!!
+message	"You connected to the following path: /"
+path	"/"
 ```
 
 # Exercise 1.11 Spring
@@ -252,7 +235,7 @@ docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 ```
 
 # Exercise 1.14 Environment
-The updared Dockerfiles are above.
+The updated Dockerfiles are above.
 ```
 docker run -d -p 5000:5000 webapp
 docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
@@ -287,6 +270,24 @@ Commands:
 sudo docker build -t rails .
 sudo docker run -p 3000:3000 rails
 ```
+
+# Exercise 1.x
+```
+docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
+Sending build context to Docker daemon  2.048kB
+Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
+ ---> 3d2b622b1849
+Step 2/2 : CMD ["-c"]
+ ---> Running in 7cba9ffe8fd3
+Removing intermediate container 7cba9ffe8fd3
+ ---> a121f1f011bb
+Successfully built a121f1f011bb
+Successfully tagged docker-clock:latest
+docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
+1
+2
+```
+
 
 # Exercise 1.15: Homework
 ```
