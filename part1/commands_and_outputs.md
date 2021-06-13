@@ -18,15 +18,38 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 
 # Exercise 1.3 Secret message
 ```
-docker@boot2docker:~$ docker run -it devopsdockeruh/pull_exercise
+azureuser@docker-test:~$ docker run -d devopsdockeruh/simple-web-service:ubuntu
+...
+Status: Downloaded newer image for devopsdockeruh/simple-web-service:ubuntu
+9ae1eb721f9d97147faf8614a606d88c681600ea360ce60f4d05e9a6718177eb
+azureuser@docker-test:~$ docker exec -it 9ae bash
+root@9ae1eb721f9d:/usr/src/app# tail -f ./text.log
+2021-06-13 15:46:00 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+```
+
+
+# Exercise 1.6 Hello Docker Hub
+```
+azureuser@docker-test:~$ docker run -it devopsdockeruh/pull_exercise
 Unable to find image 'devopsdockeruh/pull_exercise:latest' locally
 latest: Pulling from devopsdockeruh/pull_exercise
-8e402f1a9c57: Pull complete                                                                                                                                                                                                                  5e2195587d10: Pull complete                                                                                                                                                                                                                  6f595b2fc66d: Pull complete                                                                                                                                                                                                                  165f32bf4e94: Pull complete                                                                                                                                                                                                                  67c4f504c224: Pull complete                                                                                                                                                                                                                  Digest: sha256:7c0635934049afb9ca0481fb6a58b16100f990a0d62c8665b9cfb5c9ada8a99f
+8e402f1a9c57: Pull complete
+5e2195587d10: Pull complete
+6f595b2fc66d: Pull complete
+165f32bf4e94: Pull complete
+67c4f504c224: Pull complete
+Digest: sha256:7c0635934049afb9ca0481fb6a58b16100f990a0d62c8665b9cfb5c9ada8a99f
 Status: Downloaded newer image for devopsdockeruh/pull_exercise:latest
 Give me the password: basics
 You found the correct password. Secret message is:
 "This is the secret message"
 ```
+
+
+
+
+
 
 # Exercise 1.4 Missing dependencies
 ```
@@ -61,6 +84,9 @@ Searching..
 </body></html>
 docker@boot2docker:~$
 ```
+
+# Exercise 1.5
+
 
 # Exercise 1.6
 ```
@@ -139,45 +165,8 @@ Because I'm running Docker Toolbox on Windows 10 Home, the address to navigate t
 Ports configured correctly!!
 ```
 
-# Exercise 1.10
-For the Dockerfile, see folder /exercise-1-10.
-```
-FROM node:current-slim
-WORKDIR /usr/src/app
-ENV API_URL=http://192.168.99.100:8000/
-COPY package.json .
-RUN npm i
-EXPOSE 5000
-CMD [ "npm", "start" ]
-COPY . .
-```
-
-# Exercise 1.11
-For the Dockerfile, see folder /exercise-1-11.
-```
-FROM node:current-slim
-WORKDIR /usr/src/app
-ENV FRONT_URL=http://192.168.99.100:5000
-COPY package.json .
-RUN npm install
-EXPOSE 8000
-CMD [ "npm", "start" ]
-COPY . .
-```
-
-```
-docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
-```
-
-# Exercise 1.12
-For the Dockerfiles, see folders /exercise-1-10 and /exercise-1-11. The Dockerfiles have been updated as per the requirements of 1.12.
-```
-docker run -d -p 5000:5000 webapp
-docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
-```
-
-# Exercise 1.13
-Switched from Win 10 to Ubuntu at this point. Dockerfile in /exercise-1-13.
+# Exercise 1.11 Spring
+Switched from Win 10 to Ubuntu at this point.
 ```
 FROM openjdk:8
 COPY . /usr/src/myapp
@@ -191,6 +180,44 @@ EXPOSE 8080
 sudo docker build -t java .
 sudo docker run -p 8080:8080 java
 
+```
+
+# Exercise 1.12 Hello, frontend!
+Dockerfile (edited for 1.14):
+```
+FROM node:current-slim
+WORKDIR /usr/src/app
+ENV API_URL=http://192.168.99.100:8000/
+COPY package.json .
+RUN npm i
+EXPOSE 5000
+CMD [ "npm", "start" ]
+COPY . .
+```
+
+# Exercise 1.13 Hello, backend!
+Dockerfile (edited for 1.14):
+```
+FROM node:current-slim
+WORKDIR /usr/src/app
+ENV FRONT_URL=http://192.168.99.100:5000
+COPY package.json .
+RUN npm install
+EXPOSE 8000
+CMD [ "npm", "start" ]
+COPY . .
+```
+
+Command:
+```
+docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
+```
+
+# Exercise 1.14 Environment
+The updared Dockerfiles are above.
+```
+docker run -d -p 5000:5000 webapp
+docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
 ```
 
 # Exercise 1.14
