@@ -187,7 +187,7 @@ path	"/"
 ```
 
 # Exercise 1.11 Spring
-Switched from Win 10 to Ubuntu at this point.
+Got a button in browser that printed "Success".
 ```
 FROM openjdk:8
 COPY . /usr/src/myapp
@@ -204,11 +204,13 @@ sudo docker run -p 8080:8080 java
 ```
 
 # Exercise 1.12 Hello, frontend!
+```sudo docker build -t webapp .```
+
 Dockerfile (edited for 1.14):
 ```
 FROM node:current-slim
 WORKDIR /usr/src/app
-ENV API_URL=http://192.168.99.100:8000/
+ENV API_URL=http://137.135.212.14:8000/
 COPY package.json .
 RUN npm i
 EXPOSE 5000
@@ -221,7 +223,7 @@ Dockerfile (edited for 1.14):
 ```
 FROM node:current-slim
 WORKDIR /usr/src/app
-ENV FRONT_URL=http://192.168.99.100:5000
+ENV FRONT_URL=http://137.135.212.14:5000
 COPY package.json .
 RUN npm install
 EXPOSE 8000
