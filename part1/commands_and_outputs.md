@@ -53,26 +53,23 @@ You found the correct password. Secret message is:
 
 # Exercise 1.4 Missing dependencies
 ```
-docker@boot2docker:~$ docker run -it -d --name website ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
-b1b2f3b3a3659b15e5a4a6a3bea695381292d60d71ef7a4aab8ca4563dc2ec1f
-docker@boot2docker:~$ docker exec -it website bash
-root@b1b2f3b3a365:/# apt-get update
-Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [109 kB]
+azureuser@docker-test:~$ sudo docker run -it -d --name website ubuntu:16.04 sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+Unable to find image 'ubuntu:16.04' locally
 ...
-Get:18 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [9084 B]
-Fetched 16.6 MB in 16s (1033 kB/s)
+Status: Downloaded newer image for ubuntu:16.04
+74d7773f4b823cfb52330bc643b6d98b0881475942ec8ced00bb2766b29fab9f
+azureuser@docker-test:~$ docker exec -it website bash
+root@74d7773f4b82:/# apt-get update
+...
 Reading package lists... Done
-root@b1b2f3b3a365:/# apt-get install curl
-Reading package lists... Done
+root@74d7773f4b82:/# apt-get install curl
 ...
-After this operation, 19.0 MB of additional disk space will be used.
-Do you want to continue? [Y/n] y
-Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libffi6 amd64 3.2.1-4 [17.8 kB]
-...
+129 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
 done.
-root@b1b2f3b3a365:/# exit
+root@74d7773f4b82:/# exit
 exit
-docker@boot2docker:~$ docker attach website
+azureuser@docker-test:~$ sudo docker attach website
 helsinki.fi
 Searching..
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
@@ -80,9 +77,8 @@ Searching..
 <title>301 Moved Permanently</title>
 </head><body>
 <h1>Moved Permanently</h1>
-<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+<p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
 </body></html>
-docker@boot2docker:~$
 ```
 
 # Exercise 1.5
