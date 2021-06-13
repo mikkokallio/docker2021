@@ -89,7 +89,7 @@ root@b6690cad9776:/usr/app# tail -f ./logs.txt
 ```
 
 
-# Exercise 1.7
+# Exercise 1.8 Image for script
 ```
 docker@boot2docker:~/docker2020/part1/curler$ docker build -t curler .
 Sending build context to Docker daemon  4.096kB
@@ -101,6 +101,16 @@ helsinki.fi
 Searching..
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 ...
+```
+
+```
+FROM ubuntu:16.04 
+
+COPY script.sh . 
+
+RUN apt-get update && apt-get install -y curl
+RUN chmod +x ./script.sh
+ENTRYPOINT ./script.sh
 ```
 
 # Exercise 1.8
