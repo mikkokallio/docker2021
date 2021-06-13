@@ -109,10 +109,11 @@ You found the correct password. Secret message is:
 # Exercise 1.7 Two line Dockerfile
 Commands to build and run the image:
 ```
-azureuser@docker-test:~/twoline$ docker build .
+azureuser@docker-test:~/twoline$ docker build . -t web-server
 ...
 Successfully built 794f9585ff41
-azureuser@docker-test:~/twoline$ docker run 794
+Successfully tagged web-server:latest
+azureuser@docker-test:~/twoline$ docker run web-server
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
 
 [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
@@ -123,22 +124,33 @@ azureuser@docker-test:~/twoline$ docker run 794
 [GIN-debug] Listening and serving HTTP on :8080
 ```
 
+Dockerfile:
+```
+FROM devopsdockeruh/simple-web-service:alpine
+CMD ["server"]
+```
+
 # Exercise 1.8 Image for script
 ```
-docker@boot2docker:~/docker2020/part1/curler$ docker build -t curler .
-Sending build context to Docker daemon  4.096kB
+azureuser@docker-test:~/script$ docker build -t curler .
 ...
+Successfully built 5c1a1fd8a208
 Successfully tagged curler:latest
-docker@boot2docker:~/docker2020/part1/curler$ docker run -it curler
+azureuser@docker-test:~/script$ docker run -it curler
 Input website:
 helsinki.fi
 Searching..
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-...
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
+</body></html>
 ```
 
 ```
-FROM ubuntu:16.04 
+FROM ubuntu:18.04 
 
 COPY script.sh . 
 
