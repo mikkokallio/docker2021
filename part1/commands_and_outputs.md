@@ -262,7 +262,7 @@ I used a simple text-based Python app for this. The repo is here: https://github
 
 The README.md file in that repo gives a `docker run` command that enables mounting a `json` file to persist changes made within the container.
 
-Image location in Docker Hub: TO BE ADDED
+Image location in Docker Hub: https://hub.docker.com/repository/docker/mkallio/mitodo
 
 # Exercise 1.16: Heroku
 
