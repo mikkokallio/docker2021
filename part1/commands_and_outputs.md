@@ -224,21 +224,21 @@ CMD [ "serve", "-s", "-l", "5000", "build" ]
 Ran it with `docker run -p 5000:5000 front:prod` and was greeted with `Exercise 1.12: Congratulations! You configured your ports correctly!`.
 
 # Exercise 1.13 Hello, backend!
-Dockerfile (edited for 1.14):
+Dockerfile
 ```
-FROM node:current-slim
-WORKDIR /usr/src/app
-ENV FRONT_URL=http://137.135.212.14:5000
-COPY package.json .
-RUN npm install
-EXPOSE 8000
-CMD [ "npm", "start" ]
-COPY . .
+FROM golang:1.16.7-alpine3.14
+
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
+
+RUN go build
+CMD ["/app/server"]
 ```
 
 Command:
 ```
-docker run -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
+docker run -p 8080:8080 -e GIN_MODE=release backend
 ```
 
 # Exercise 1.14 Environment
