@@ -218,7 +218,8 @@ RUN npm install -g serve
 COPY . ./
 RUN npm run build
 EXPOSE 5000
-CMD [ "serve", "-s", "-l", "5000", "build" ]```
+CMD [ "serve", "-s", "-l", "5000", "build" ]
+```
 
 Ran it with `docker run -p 5000:5000 front:prod` and was greeted with `Exercise 1.12: Congratulations! You configured your ports correctly!`.
 
