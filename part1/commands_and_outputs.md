@@ -204,19 +204,23 @@ sudo docker run -p 8080:8080 java
 ```
 
 # Exercise 1.12 Hello, frontend!
-```sudo docker build -t webapp .```
-
-Dockerfile (edited for 1.14):
+Dockerfile
 ```
 FROM node:current-slim
-WORKDIR /usr/src/app
-ENV API_URL=http://137.135.212.14:8000/
-COPY package.json .
-RUN npm i
+WORKDIR /app
+#ENV API_URL=http://137.135.212.14:8000/
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci
+RUN npm install react-scripts@3.4.1 -g
+RUN npm install -g serve
+COPY . ./
+RUN npm run build
 EXPOSE 5000
-CMD [ "npm", "start" ]
-COPY . .
-```
+CMD [ "serve", "-s", "-l", "5000", "build" ]```
+
+Ran it with `docker run -p 5000:5000 front:prod` and was greeted with `Exercise 1.12: Congratulations! You configured your ports correctly!`.
 
 # Exercise 1.13 Hello, backend!
 Dockerfile (edited for 1.14):
