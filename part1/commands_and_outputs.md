@@ -208,7 +208,6 @@ Dockerfile
 ```
 FROM node:current-slim
 WORKDIR /app
-#ENV API_URL=http://137.135.212.14:8000/
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
@@ -242,6 +241,8 @@ docker run -p 8080:8080 -e GIN_MODE=release backend
 ```
 
 # Exercise 1.14 Environment
+PLEASE NOTE: I ran the containers on an Azure VM, and the IP displayed below is that VM's public IP.
+
 The following updates to Dockerfiles were required (otherwise the files remained as above).
 
 Frontend: Changed `npm run build` to `RUN REACT_APP_BACKEND_URL=http://168.61.93.220:8080 npm run build`.
