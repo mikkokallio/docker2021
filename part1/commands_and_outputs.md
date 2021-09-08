@@ -242,59 +242,18 @@ docker run -p 8080:8080 -e GIN_MODE=release backend
 ```
 
 # Exercise 1.14 Environment
-The updated Dockerfiles are above.
+The following updates to Dockerfiles were required (otherwise the files remained as above).
+
+Frontend: Changed `npm run build` to `RUN REACT_APP_BACKEND_URL=http://168.61.93.220:8080 npm run build`.
+Backend: Added `ENV REQUEST_ORIGIN=http://168.61.93.220:5000`.
+
+Commands
 ```
-docker run -d -p 5000:5000 webapp
-docker run -d -p 8000:8000 -v $(pwd)/logs.txt:/usr/src/app/logs.txt backend
-```
-
-# Exercise 1.14
-Dockerfile:
-```
-FROM ruby:2.6.0
-RUN apt-get update -qq && apt-get install -y nodejs nano
-
-RUN mkdir /myapp
-WORKDIR /myapp
-
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
-RUN bundle install
-COPY . /myapp
-
-ENV SECRET_KEY_BASE `bin/rake secret`
-
-RUN rails db:migrate RAILS_ENV=production
-RUN rake assets:precompile
-
-EXPOSE 3000
-
-CMD ["rails", "s", "-e", "production"]
+docker run -d -p 5000:5000 frontend
+docker run -d -p 8080:8080 -e GIN_MODE=release backend
 ```
 
-Commands:
-```
-sudo docker build -t rails .
-sudo docker run -p 3000:3000 rails
-```
-
-# Exercise 1.x
-```
-docker@boot2docker:~/docker2020/part1/overwrite$ docker build -t docker-clock .
-Sending build context to Docker daemon  2.048kB
-Step 1/2 : FROM devopsdockeruh/overwrite_cmd_exercise
- ---> 3d2b622b1849
-Step 2/2 : CMD ["-c"]
- ---> Running in 7cba9ffe8fd3
-Removing intermediate container 7cba9ffe8fd3
- ---> a121f1f011bb
-Successfully built a121f1f011bb
-Successfully tagged docker-clock:latest
-docker@boot2docker:~/docker2020/part1/overwrite$ docker run docker-clock
-1
-2
-```
-
+Result was `Exercise 1.14: Success! Great job!`.
 
 # Exercise 1.15: Homework
 ```
