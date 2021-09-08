@@ -257,7 +257,13 @@ docker run -d -p 8080:8080 -e GIN_MODE=release backend
 Result was `Exercise 1.14: Success! Great job!`.
 
 # Exercise 1.15: Homework
-```
-```
+
+I used a simple text-based Python app for this. The repo is here: https://github.com/mikkokallio/mitodo
+
+The README.md file in that repo gives a `docker run` command that enables mounting a `json` file to persist changes made within the container.
+
+Image location in Docker Hub: TO BE ADDED
 
 # Exercise 1.16: Heroku
+
+Skipping this one because only 15 are needed for completion!
